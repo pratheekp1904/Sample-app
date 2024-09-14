@@ -4,20 +4,20 @@ phases:
   install:
     commands:
       - echo Installing dependencies...
+      # Add any dependencies installation commands here
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --no-include-email --region ap-southeast-1)
+      - $(aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 640168415754.dkr.ecr.ap-southeast-1.amazonaws.com/sample-app)
   build:
     commands:
       - echo Building the Docker image...
       - docker build -t sample-app .
-      - docker tag 640168415754.dkr.ecr.ap-southeast-1.amazonaws.com/sample-app:latest
+      - docker tag sample-app:latest 640168415754.dkr.ecr.ap-southeast-1.amazonaws.com/sample-app:latest
   post_build:
     commands:
-      - echo Pushing the Docker image to Amazon ECR...
-      - docker push :latest
-
+      - echo Pushing the Docker image...
+      - docker push 640168415754.dkr.ecr.ap-southeast-1.amazonaws.com/sample-app:latest
 artifacts:
   files:
     - '**/*'
