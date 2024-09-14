@@ -6,7 +6,7 @@ const app = express();
 
 // Define a route for the root URL
 app.get('/', (req, res) => {
-    res.send('Hello, World! This is my first Node.js app.');
+    res.send('Hello, World! This is a sample Node.js Application');
 });
 
 // Another route
