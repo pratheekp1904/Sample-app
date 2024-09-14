@@ -17,3 +17,4 @@ phases:
     commands:
       - echo Pushing the Docker image...
       - docker push 640168415754.dkr.ecr.ap-southeast-1.amazonaws.com/sample-app:latest
+      - kubectl set image deployment/smaple-app sample-app=640168415754.dkr.ecr.ap-southeast-1.amazonaws.com/sample-app:latest --record
